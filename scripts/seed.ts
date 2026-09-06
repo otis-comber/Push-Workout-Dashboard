@@ -34,7 +34,7 @@ interface RawPushWorkout {
 }
 
 async function main() {
-  const raw = await fs.readFile("data/push-sample-workout.json", "utf-8");
+  const raw = await fs.readFile("data/push-workouts-full.json", "utf-8");
   const pushWorkouts = JSON.parse(raw) as RawPushWorkout[];
 
   const mapped = pushWorkouts.map((rawWorkout) => {
@@ -60,8 +60,14 @@ async function main() {
   });
 
   await dbConnect();
-  await Workout.insertMany(mapped);
-  console.log(`Inserted ${mapped.length} workout(s)`);
+
+  for (const workout of mapped) {
+    await Workout.findOneAndUpdate({ pushId: workout.pushId }, workout, {
+      upsert: true,
+    });
+  }
+
+  console.log(`Upserted ${mapped.length} workout(s)`);
 }
 
 main().catch((err) => {

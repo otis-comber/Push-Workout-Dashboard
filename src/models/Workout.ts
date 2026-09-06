@@ -43,7 +43,7 @@ const exerciseSchema = new Schema<IExercise>(
   { timestamps: true },
 );
 
-interface IWorkout {
+export interface IWorkout {
   pushId: string;
   name: string;
   startTime: Date;
@@ -56,7 +56,7 @@ interface IWorkout {
 
 const workoutSchema = new Schema<IWorkout>(
   {
-    pushId: String,
+    pushId: { type: String, required: true, unique: true },
     name: String,
     startTime: Date,
     endTime: Date,
