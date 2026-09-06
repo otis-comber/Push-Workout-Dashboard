@@ -4,6 +4,7 @@ import {
   createColumnHelper,
   useReactTable,
   getCoreRowModel,
+  getPaginationRowModel,
   flexRender,
 } from "@tanstack/react-table";
 
@@ -50,6 +51,10 @@ export default function Dashboard() {
     data: data ?? [],
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    initialState: {
+      pagination: { pageSize: 10 },
+    },
   });
 
   if (isLoading) {
@@ -101,10 +106,7 @@ export default function Dashboard() {
             </thead>
             <tbody className="divide-y divide-white/5">
               {table.getRowModel().rows.map((row) => (
-                <tr
-                  key={row.id}
-                  className="transition-colors hover:bg-white/4"
-                >
+                <tr key={row.id} className="transition-colors hover:bg-white/4">
                   {row.getVisibleCells().map((cell) => (
                     <td
                       key={cell.id}
@@ -120,6 +122,23 @@ export default function Dashboard() {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="mt-4 flex justify-end gap-2">
+          <button
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+            className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-gray-300 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white/5 disabled:hover:text-gray-300"
+          >
+            Previous
+          </button>
+
+          <button
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+            className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-gray-300 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white/5 disabled:hover:text-gray-300"
+          >
+            Next
+          </button>
         </div>
       </div>
     </main>
