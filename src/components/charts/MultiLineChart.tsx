@@ -84,7 +84,7 @@ export function MultiLineChart({ series, xMin }: MultiLineChartProps) {
             padding: 10,
             callbacks: {
               title: (items) =>
-                new Date(items[0].parsed.x).toLocaleDateString(undefined, {
+                new Date(items[0].parsed.x!).toLocaleDateString(undefined, {
                   month: "short",
                   day: "numeric",
                   year: "numeric",
