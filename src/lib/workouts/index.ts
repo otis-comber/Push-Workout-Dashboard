@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import type { IWorkout } from "@/models/Workout";
 
-export async function fetchWorkouts() {
+export async function fetchWorkouts(): Promise<IWorkout[]> {
   const res = await fetch("/api/workouts");
 
   if (!res.ok) {

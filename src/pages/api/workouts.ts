@@ -19,7 +19,7 @@ function allowedMethods(
 async function workoutHandler(req: NextApiRequest, res: NextApiResponse) {
   try {
     await dbConnect();
-    const result = await Workout.find();
+    const result = await Workout.find().sort({ startTime: -1 });
     res.status(200).json({ result });
   } catch (err) {
     console.error(err);

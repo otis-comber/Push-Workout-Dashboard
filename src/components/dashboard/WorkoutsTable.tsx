@@ -66,10 +66,6 @@ export function WorkoutsTable() {
 
   return (
     <div>
-      <p className="mb-3 text-sm text-gray-500">
-        {data.length} workouts logged
-      </p>
-
       <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/3 shadow-2xl shadow-black/50 backdrop-blur">
         <div className="h-1 bg-linear-to-r from-emerald-400 via-cyan-400 to-indigo-500" />
         <table className="min-w-full divide-y divide-white/10">
@@ -95,10 +91,7 @@ export function WorkoutsTable() {
               <tr key={row.id} className="transition-colors hover:bg-white/4">
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id} className="px-6 py-4 text-sm text-gray-300">
-                    {flexRender(
-                      cell.column.columnDef.cell,
-                      cell.getContext(),
-                    )}
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
               </tr>
@@ -107,7 +100,7 @@ export function WorkoutsTable() {
         </table>
       </div>
 
-      <div className="mt-4 flex justify-end gap-2">
+      <div className="mt-4 flex justify-start gap-2">
         <button
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
