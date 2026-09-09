@@ -1,3 +1,4 @@
+import { PbTable } from "@/components/dashboard/PbTable";
 import { WorkoutFrequencyChart } from "@/components/dashboard/WorkoutFrequencyChart";
 import { WorkoutsTable } from "@/components/dashboard/WorkoutsTable";
 
@@ -13,6 +14,7 @@ export default function Dashboard() {
 
         <div className="grid grid-cols-2 gap-6">
           <WorkoutsTable />
+          <PbTable />
           <WorkoutFrequencyChart />
         </div>
       </div>

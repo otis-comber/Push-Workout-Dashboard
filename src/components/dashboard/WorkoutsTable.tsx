@@ -68,6 +68,11 @@ export function WorkoutsTable() {
     <div>
       <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/3 shadow-2xl shadow-black/50 backdrop-blur">
         <div className="h-1 bg-linear-to-r from-emerald-400 via-cyan-400 to-indigo-500" />
+        <div className="p-6 pb-4">
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-gray-400">
+            Workouts
+          </h2>
+        </div>
         <table className="min-w-full divide-y divide-white/10">
           <thead className="bg-white/2">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -98,24 +103,24 @@ export function WorkoutsTable() {
             ))}
           </tbody>
         </table>
-      </div>
 
-      <div className="mt-4 flex justify-start gap-2">
-        <button
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-          className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-gray-300 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white/5 disabled:hover:text-gray-300"
-        >
-          Previous
-        </button>
+        <div className="flex justify-start gap-2 border-t border-white/10 px-6 py-4">
+          <button
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+            className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-gray-300 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white/5 disabled:hover:text-gray-300"
+          >
+            Previous
+          </button>
 
-        <button
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-          className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-gray-300 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white/5 disabled:hover:text-gray-300"
-        >
-          Next
-        </button>
+          <button
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+            className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-gray-300 transition-colors hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-white/5 disabled:hover:text-gray-300"
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );
