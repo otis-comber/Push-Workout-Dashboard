@@ -41,7 +41,8 @@ yarn-error.log*
 next-env.d.ts
 
 # personal data, not for the repo
-/data/
+/data/*
+!/data/placeholder-workouts.json
 
 # claude code files
 /AGENTS.md

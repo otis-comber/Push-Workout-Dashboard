@@ -94,4 +94,8 @@ tier covers this at no cost.
 
 For a private version with your real data and a public version with
 placeholder data: deploy the repo twice on Vercel, each with its own
-`MONGODB_URI` pointing at a different database.
+`MONGODB_URI` pointing at a different database. Seed the placeholder one with:
+
+```bash
+MONGODB_URI="<placeholder-db-uri>" npx tsx scripts/seed.ts data/placeholder-workouts.json
+```

@@ -1,0 +1,223 @@
+[
+  {
+    "id": "demo-workout-1",
+    "name": "Push",
+    "startTime": "2026-05-04T17:00:00.000Z",
+    "endTime": "2026-05-04T18:00:00.000Z",
+    "completedSets": 8,
+    "volumeKg": 1400,
+    "muscles": ["PECS", "FRONT DELTS", "TRICEPS"],
+    "exercises": [
+      {
+        "exercise": "Barbell Bench Press",
+        "masterId": "demo-master-bench",
+        "equipment": "Barbell",
+        "mainTargets": ["PECS"],
+        "completedSets": 4,
+        "volumeKg": 960,
+        "sets": [
+          { "id": "demo-set-1", "reps": 8, "weight": 60, "unit": "kg", "rir": 2, "pb": false, "estimatedOneRepMaxKg": 76 },
+          { "id": "demo-set-2", "reps": 6, "weight": 62.5, "unit": "kg", "rir": 2, "pb": false, "estimatedOneRepMaxKg": 75 }
+        ]
+      },
+      {
+        "exercise": "Barbell Standing Overhead Press",
+        "masterId": "demo-master-ohp",
+        "equipment": "Barbell",
+        "mainTargets": ["FRONT DELTS"],
+        "completedSets": 4,
+        "volumeKg": 480,
+        "sets": [
+          { "id": "demo-set-3", "reps": 6, "weight": 40, "unit": "kg", "rir": 2, "pb": false, "estimatedOneRepMaxKg": 48 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "demo-workout-2",
+    "name": "Pull",
+    "startTime": "2026-05-07T17:00:00.000Z",
+    "endTime": "2026-05-07T18:00:00.000Z",
+    "completedSets": 5,
+    "volumeKg": 2500,
+    "muscles": ["BACK", "HAMSTRINGS"],
+    "exercises": [
+      {
+        "exercise": "Barbell Deadlift",
+        "masterId": "demo-master-deadlift",
+        "equipment": "Barbell",
+        "mainTargets": ["BACK"],
+        "completedSets": 5,
+        "volumeKg": 2500,
+        "sets": [
+          { "id": "demo-set-4", "reps": 5, "weight": 100, "unit": "kg", "rir": 2, "pb": false, "estimatedOneRepMaxKg": 117 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "demo-workout-3",
+    "name": "Legs",
+    "startTime": "2026-05-11T17:00:00.000Z",
+    "endTime": "2026-05-11T18:00:00.000Z",
+    "completedSets": 8,
+    "volumeKg": 1720,
+    "muscles": ["QUADS", "GLUTES"],
+    "exercises": [
+      {
+        "exercise": "Barbell Back Squat",
+        "masterId": "demo-master-squat",
+        "equipment": "Barbell",
+        "mainTargets": ["QUADS"],
+        "completedSets": 4,
+        "volumeKg": 1600,
+        "sets": [
+          { "id": "demo-set-5", "reps": 5, "weight": 80, "unit": "kg", "rir": 2, "pb": false, "estimatedOneRepMaxKg": 93 }
+        ]
+      },
+      {
+        "exercise": "Barbell Front Squat",
+        "masterId": "demo-master-frontsquat",
+        "equipment": "Barbell",
+        "mainTargets": ["QUADS"],
+        "completedSets": 4,
+        "volumeKg": 1200,
+        "sets": [
+          { "id": "demo-set-6", "reps": 5, "weight": 60, "unit": "kg", "rir": 2, "pb": false, "estimatedOneRepMaxKg": 70 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "demo-workout-4",
+    "name": "Push",
+    "startTime": "2026-06-05T17:00:00.000Z",
+    "endTime": "2026-06-05T18:00:00.000Z",
+    "completedSets": 8,
+    "volumeKg": 1550,
+    "muscles": ["PECS", "TRICEPS"],
+    "exercises": [
+      {
+        "exercise": "Barbell Bench Press",
+        "masterId": "demo-master-bench",
+        "equipment": "Barbell",
+        "mainTargets": ["PECS"],
+        "completedSets": 4,
+        "volumeKg": 1050,
+        "sets": [
+          { "id": "demo-set-7", "reps": 5, "weight": 70, "unit": "kg", "rir": 1, "pb": true, "estimatedOneRepMaxKg": 82 }
+        ]
+      },
+      {
+        "exercise": "Barbell Incline Bench Press",
+        "masterId": "demo-master-incline",
+        "equipment": "Barbell",
+        "mainTargets": ["PECS"],
+        "completedSets": 4,
+        "volumeKg": 500,
+        "sets": [
+          { "id": "demo-set-8", "reps": 6, "weight": 50, "unit": "kg", "rir": 2, "pb": false, "estimatedOneRepMaxKg": 60 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "demo-workout-5",
+    "name": "Pull",
+    "startTime": "2026-06-09T17:00:00.000Z",
+    "endTime": "2026-06-09T18:00:00.000Z",
+    "completedSets": 3,
+    "volumeKg": 1650,
+    "muscles": ["BACK", "HAMSTRINGS"],
+    "exercises": [
+      {
+        "exercise": "Barbell Deadlift",
+        "masterId": "demo-master-deadlift",
+        "equipment": "Barbell",
+        "mainTargets": ["BACK"],
+        "completedSets": 3,
+        "volumeKg": 1650,
+        "sets": [
+          { "id": "demo-set-9", "reps": 3, "weight": 110, "unit": "kg", "rir": 1, "pb": true, "estimatedOneRepMaxKg": 121 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "demo-workout-6",
+    "name": "Legs",
+    "startTime": "2026-07-02T17:00:00.000Z",
+    "endTime": "2026-07-02T18:00:00.000Z",
+    "completedSets": 5,
+    "volumeKg": 2250,
+    "muscles": ["QUADS", "GLUTES"],
+    "exercises": [
+      {
+        "exercise": "Barbell Back Squat",
+        "masterId": "demo-master-squat",
+        "equipment": "Barbell",
+        "mainTargets": ["QUADS"],
+        "completedSets": 5,
+        "volumeKg": 2250,
+        "sets": [
+          { "id": "demo-set-10", "reps": 5, "weight": 90, "unit": "kg", "rir": 1, "pb": true, "estimatedOneRepMaxKg": 105 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "demo-workout-7",
+    "name": "Push",
+    "startTime": "2026-08-06T17:00:00.000Z",
+    "endTime": "2026-08-06T18:00:00.000Z",
+    "completedSets": 3,
+    "volumeKg": 690,
+    "muscles": ["PECS", "TRICEPS"],
+    "exercises": [
+      {
+        "exercise": "Barbell Bench Press",
+        "masterId": "demo-master-bench",
+        "equipment": "Barbell",
+        "mainTargets": ["PECS"],
+        "completedSets": 3,
+        "volumeKg": 690,
+        "sets": [
+          { "id": "demo-set-11", "reps": 3, "weight": 75, "unit": "kg", "rir": 1, "pb": true, "estimatedOneRepMaxKg": 83 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "demo-workout-8",
+    "name": "Legs",
+    "startTime": "2026-09-03T17:00:00.000Z",
+    "endTime": "2026-09-03T18:00:00.000Z",
+    "completedSets": 8,
+    "volumeKg": 1960,
+    "muscles": ["QUADS", "GLUTES"],
+    "exercises": [
+      {
+        "exercise": "Barbell Front Squat",
+        "masterId": "demo-master-frontsquat",
+        "equipment": "Barbell",
+        "mainTargets": ["QUADS"],
+        "completedSets": 4,
+        "volumeKg": 1000,
+        "sets": [
+          { "id": "demo-set-12", "reps": 4, "weight": 65, "unit": "kg", "rir": 1, "pb": true, "estimatedOneRepMaxKg": 74 }
+        ]
+      },
+      {
+        "exercise": "Barbell Back Squat",
+        "masterId": "demo-master-squat",
+        "equipment": "Barbell",
+        "mainTargets": ["QUADS"],
+        "completedSets": 4,
+        "volumeKg": 960,
+        "sets": [
+          { "id": "demo-set-13", "reps": 3, "weight": 95, "unit": "kg", "rir": 1, "pb": true, "estimatedOneRepMaxKg": 108 }
+        ]
+      }
+    ]
+  }
+]

@@ -34,7 +34,8 @@ interface RawPushWorkout {
 }
 
 async function main() {
-  const raw = await fs.readFile("data/push-workouts-full.json", "utf-8");
+  const filePath = process.argv[2] ?? "data/push-workouts-full.json";
+  const raw = await fs.readFile(filePath, "utf-8");
   const pushWorkouts = JSON.parse(raw) as RawPushWorkout[];
 
   const mapped = pushWorkouts.map((rawWorkout) => {
