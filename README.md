@@ -1,40 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Training Dashboard
 
-## Getting Started
+Personal strength-training dashboard. Pulls workout data from the
+[Push](https://www.pushapp.co.uk/) app, stores it in MongoDB, shows personal
+bests, estimated 1RM progress, and workout frequency.
 
-First, run the development server:
+## Stack
+
+- Next.js (Pages Router) + React 19
+- TanStack Query (data fetching) + TanStack Table (workout log)
+- Chart.js
+- MongoDB / Mongoose
+- Tailwind CSS v4
+- Vitest + Testing Library + MSW
+
+## Structure
+
+```
+src/
+  components/
+    charts/     # generic chart primitives + chart widgets
+    tables/     # table widgets
+    dashboard/  # Dashboard.tsx, composes everything above
+  hooks/        # derived-data hooks (usePersonalBests, useLiftProgress, useWorkoutFrequency)
+  lib/
+    workouts/   # useWorkouts + pure transform functions (transforms.ts)
+    db/         # Mongoose connection
+  models/       # Mongoose schemas
+  pages/        # routes + API routes
+  testing/      # test utilities (render, renderHook, MSW setup, fixtures)
+scripts/        # data pipeline scripts, run via tsx
+```
+
+Components are presentational only. Data shaping lives in
+`lib/workouts/transforms.ts` as plain functions, each wrapped by a hook in
+`hooks/`.
+
+## Setup
+
+```bash
+npm install
+```
+
+`.env.local`:
+
+```bash
+MONGODB_URI="mongodb+srv://..."
+```
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Data pipeline
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+The app only reads from MongoDB, it never calls the Push API itself.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+1. Pull the latest export from Push into `data/push-raw/` (done externally, not
+   part of this repo)
+2. `npm run build-workouts`, merges the raw calendar + exercise history into
+   `data/push-workouts-full.json`
+3. `npm run seed`, upserts that file into MongoDB
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+`data/` is gitignored, it's real personal training data.
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts
 
-## Learn More
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm run build` / `npm start` | Production build / start |
+| `npm run lint` | ESLint |
+| `npm test` / `npm run test:watch` | Run tests once / in watch mode |
+| `npm run build-workouts` | Merge raw Push export into one file |
+| `npm run seed` | Upsert workouts into MongoDB |
 
-To learn more about Next.js, take a look at the following resources:
+## Testing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+- `lib/workouts/transforms.ts` is pure, tested directly, no mocking
+- `useWorkouts` (the only hook that hits the network) is tested against a
+  mocked `/api/workouts` via MSW
+- Components are tested by mocking the hook they depend on and rendering with
+  Testing Library
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Shared test setup is in `src/testing/`: `render.tsx` / `renderHook.tsx` wrap
+things in a `QueryClientProvider`, `fixtures/workouts.ts` has builders for
+`IWorkout` test data.
 
-## Deploy on Vercel
+## Deploying
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Standard Next.js app, deploys to Vercel with no config. Set `MONGODB_URI` as
+an env var on the project, done. Vercel free tier + MongoDB Atlas free (M0)
+tier covers this at no cost.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+For a private version with your real data and a public version with
+placeholder data: deploy the repo twice on Vercel, each with its own
+`MONGODB_URI` pointing at a different database.
