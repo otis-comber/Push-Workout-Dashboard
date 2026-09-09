@@ -15,18 +15,22 @@ export function WorkoutFrequencyChart() {
     return null;
   }
 
-  const countsByMonth = data.reduce(
-    (acc, workout) => {
-      const date = new Date(workout.startTime);
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const key = `${year}-${month}`;
+  const chartStart = new Date(2026, 2, 1);
 
-      acc[key] = (acc[key] ?? 0) + 1;
-      return acc;
-    },
-    {} as Record<string, number>,
-  );
+  const countsByMonth = data
+    .filter((workout) => new Date(workout.startTime) >= chartStart)
+    .reduce(
+      (acc, workout) => {
+        const date = new Date(workout.startTime);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const key = `${year}-${month}`;
+
+        acc[key] = (acc[key] ?? 0) + 1;
+        return acc;
+      },
+      {} as Record<string, number>,
+    );
 
   const sortedEntries = Object.entries(countsByMonth).sort(([a], [b]) =>
     a.localeCompare(b),
