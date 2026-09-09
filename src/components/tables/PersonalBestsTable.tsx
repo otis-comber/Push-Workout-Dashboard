@@ -1,61 +1,11 @@
-import { useWorkouts } from "@/lib/workouts";
+import { usePersonalBests } from "@/hooks/usePersonalBests";
 
-const MAIN_LIFTS = [
-  "Barbell Back Squat",
-  "Barbell Bench Press",
-  "Barbell Deadlift",
-  "Barbell Front Squat",
-  "Barbell Standing Overhead Press",
-  "Barbell Incline Bench Press",
-];
+export function PersonalBestsTable() {
+  const { personalBests } = usePersonalBests();
 
-export function PbTable() {
-  const { data, isLoading, isError } = useWorkouts();
-
-  if (isLoading) {
-    return <p className="text-gray-400">Loading…</p>;
-  }
-  if (isError) {
-    return <p className="text-red-400">Error loading data</p>;
-  }
-  if (!data) {
+  if (!personalBests) {
     return null;
   }
-
-  interface LiftRecord {
-    exercise: string;
-    oneRepMax: number;
-    weight: number;
-    reps: number;
-    date: Date;
-  }
-
-  const bestByExercise = data
-    .flatMap((workout) =>
-      workout.exercises.flatMap((exercise) =>
-        exercise.sets.map((set) => ({
-          exercise: exercise.exercise,
-          oneRepMax: set.estimatedOneRepMaxKg,
-          weight: set.weight,
-          reps: set.reps,
-          date: workout.startTime,
-        })),
-      ),
-    )
-    .filter((record) => MAIN_LIFTS.includes(record.exercise))
-    .reduce(
-      (acc, record) => {
-        acc[record.exercise] =
-          !acc[record.exercise] ||
-          record.oneRepMax > acc[record.exercise].oneRepMax
-            ? record
-            : acc[record.exercise];
-        return acc;
-      },
-      {} as Record<string, LiftRecord>,
-    );
-
-  const personalBests = Object.values(bestByExercise);
 
   return (
     <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/3 shadow-2xl shadow-black/50 backdrop-blur">

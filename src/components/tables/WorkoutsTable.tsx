@@ -45,7 +45,7 @@ const columns = [
 ];
 
 export function WorkoutsTable() {
-  const { data, isLoading, isError } = useWorkouts();
+  const { data } = useWorkouts();
 
   const table = useReactTable({
     data: data ?? [],
@@ -56,13 +56,6 @@ export function WorkoutsTable() {
       pagination: { pageSize: 5 },
     },
   });
-
-  if (isLoading) {
-    return <p className="text-gray-400">Loading…</p>;
-  }
-  if (isError) {
-    return <p className="text-red-400">Error loading data</p>;
-  }
 
   return (
     <div>
