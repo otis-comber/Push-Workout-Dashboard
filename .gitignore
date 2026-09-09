@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# personal data, not for the repo
+/data/
+
+# claude code files
+/AGENTS.md
+/CLAUDE.md
